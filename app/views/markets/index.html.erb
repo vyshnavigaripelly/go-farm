@@ -1,0 +1,54 @@
+<!-- For all Markets -->
+
+<% if params[:param] %>
+  <h3 class='center-align'>Markets near <%= params[:param]%></h3>
+<% else %>
+  <h3 class='center-align'>All Markets</h3>
+<% end %>
+  <div class="search-function">
+    <form action = "/markets/" id='home_search' class='row form' method='get'>
+      <div class="input-field col s4e field">
+        <%= text_field_tag :param, params[:search], :placeholder => "Address or Postal Code", :class => 'search_bar'%>
+        <%= submit_tag "Search", :class => 'search_btn', :name => nil %>
+      </div>
+    </form>
+  </div>
+  <div class="show-market-section show-market-two-columns-responsive">
+    <div class="left-section">
+      <% if params[:param] %>
+        <%= react_component("Markets", {markets: @market})%>
+      <% else %>
+        <%= react_component("Markets", {markets: Market.order(created_at: :desc)}) %>
+      <% end %>
+    </div>
+    <div class="right-section">
+      <div id="map"></div>
+    </div>
+  </div>
+
+<script>
+  handler = Gmaps.build('Google');
+  handler.buildMap({
+    provider: {
+      disableDefaultUI: false
+      // pass in other Google Maps API options here
+    },
+    internal: {
+      id: 'map'
+    }
+  },
+
+  function(){
+    // console.log ("maps running on index");
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    <% if @search_location %>
+      handler.addCircles([<%=raw @search_location.to_json%>]);
+      markers = handler.addMarker(<%=raw @search_location.to_json%>);
+    <% end %>
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(10);
+  }
+
+  );
+</script>

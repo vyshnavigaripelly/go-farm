@@ -1,0 +1,72 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "materialize";
+ @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+.nav-wrapper {
+  position: fixed;
+  background-color: #419B44;
+
+  .brand-logo {
+    padding: 0 20px;
+  }
+
+  .nav-links {
+    padding: 0 20px;
+  }
+}
+
+.content {
+  padding: 0 20px;
+}
+
+body {
+  background-color: #F5F4E1;
+  color: #1e2127;
+  font-size: 24px;
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
+}
+
+.max-width-container {
+  max-width: 1000px;
+  width: 50%;
+  margin: 50px auto 20px auto;
+  overflow: hidden;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 10px;
+  padding-bottom: 20px;
+  padding-top: 10px;
+  .field {
+    width: 80%;
+    margin: auto;
+    padding-bottom: 20px;
+  }
+  @media (max-width: 1000px) {
+    width: 100%;
+    padding-bottom: 0;
+  }
+}
+
+.error_messages {
+  font: red;
+}
+
+.logo {
+  height: 100%;
+}

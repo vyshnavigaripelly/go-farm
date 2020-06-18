@@ -1,0 +1,62 @@
+<div class="fullscreen">
+  <%= vider_tag 'video/clips_final2', position: '100% 100%' %>
+</div>
+
+<div class="slogan">
+  <h1 style="color: white">Connecting you with local Farmers! </h1>
+</div>
+
+<div class="search-border">
+<div>
+  <h5 class='center-align'>Search by Product or Market</h5>
+</div>
+
+<div>
+  <form action = "/search/" id='home_search' class='row form' method='get'>
+    <div class="input-field">
+      <div class="input-field col s3 search-criteria">
+        <%= select_tag(:type, options_for_select([['product', 'product'], ['market', 'market']])) %>
+      </div>
+      <%= text_field_tag :param, params[:search], :class => 'search_bar'%>
+
+              <!-- Dropdown Structure -->
+      <ul id='dropdown1' class='center-align dropdown-content'>
+         <li><a href="#!">market</a></li>
+         <li><a href="#!">product</a></li>
+      </ul>
+    </div>
+    <%= submit_tag "Search", :class => 'search_btn', :name => nil %>
+  </form>
+</div>
+<div class='row search'>
+  <a href='/markets'>Search Markets by Postal Code</a>
+</div>
+</div>
+
+<!-- <%= form_tag '/search/', :method =>'get', :encoding =>  nil do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search", :name => nil %> -->
+<!--
+<% end %>
+<div class="row">
+  <form class="col s12">
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="postal_code" type="text" class="validate">
+        <label for="postal_code" data-error="wrong" data-success="right">Postal Code</label>
+      </div>
+      <a class='dropdown-button btn' href='#' data-activates='dropdown2'>day</a>
+      Dropdown Structure
+      <ul id='dropdown2' class='dropdown-content'>
+         <li><a href="#!">Monday</a></li>
+         <li><a href="#!">Tuesday</a></li>
+         <li><a href="#!">Wedensday</a></li>
+         <li><a href="#!">Thursday</a></li>
+         <li><a href="#!">Friday</a></li>
+         <li><a href="#!">Saturday</a></li>
+         <li><a href="#!">Sunday</a></li>
+      </ul>
+    </div>
+  </form>
+</div>
+ -->

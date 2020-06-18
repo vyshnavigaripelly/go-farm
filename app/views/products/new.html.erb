@@ -1,0 +1,37 @@
+<h1>Add Product</h1>
+
+<%= form_for Product.new do |f| %>
+    <% if @product.errors.any? %>
+    <strong><b>The following errors prevented saving:</b></strong>
+    <div class="error-box">
+      <ul>
+        <% @product.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <div class="product-form max-width-container">
+      <div class="field">
+        <%= f.label :product_name %><br />
+        <%= f.text_field :product_name %>
+      </div>
+
+      <div class="field product-type-field">
+        <%= f.label :product_type %><br />
+        <%= f.select(:product_type, options_for_select([['vegetable', 'vegetable'], ['fruit', 'fruit'], ['meat', 'meat'], ['other', 'other']])) %>
+      </div>
+
+      <div class="field">
+        <%= f.check_box(:organic) %>
+        <%= f.label :organic %><br />
+      </div>
+
+      <div class="field">
+        <%= f.check_box(:non_gmo) %>
+        <%= f.label :non_gmo %><br />
+      </div>
+    </div>
+    <div class="action"><%= f.submit "Submit" %></div>
+  <% end %>

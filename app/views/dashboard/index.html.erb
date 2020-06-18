@@ -1,0 +1,61 @@
+<% if current_user %>
+  <h1><%= current_user.first_name%>'s Dashboard</h1>
+
+  <div class="user-info">
+    <%= react_component("UserProfile", {
+      type: 'user',
+      first_name: current_user.first_name,
+      last_name: current_user.last_name,
+      email: current_user.email
+      }) %>
+  </div>
+
+  <div class="fave-markets">
+    <h5>Favourite Markets:</h5>
+    <ul>
+      <li><%= link_to "Metro Hall Farmer's Market", "/markets/300" %></li>
+      <li><%= link_to "Nathan Phillips Square Farmer's Market", "/markets/301" %></li>
+      <li><%= link_to "The Farmer's Market at SickKids", "/markets/302" %></li>
+    </ul>
+  </div>
+  <div class="fave-farmers">
+    <h5>Favourite Farmers:</h5>
+    <ul>
+      <li><%= link_to "Harmony Meadows Alpacas", "/farmers/300" %></li>
+      <li><%= link_to "The Cutting Veg", "/farmers/306" %></li>
+      <li><%= link_to "Staite's Honey Enterprise", "/farmers/302" %></li>
+    </ul>
+  </div>
+
+<% elsif current_farmer %>
+  <h1><%= current_farmer.first_name%>'s Dashboard</h1>
+  <%= react_component("FarmerProfile", {
+    type: 'farmer',
+    id: current_farmer.id,
+    farm_name: current_farmer.farm_name,
+    first_name: current_farmer.first_name,
+    last_name: current_farmer.last_name,
+    email: current_farmer.email,
+    phone_no: current_farmer.phone_no,
+    website_link: current_farmer.website_link,
+    description: current_farmer.description,
+    image: "#{current_farmer.image.thumb}"
+    }) %>
+
+    <div class="farmers-profile-markets-products">
+      <%= react_component("Markets", {markets: FarmerMarket.get_markets_farmer_participates_in(current_farmer.id)})%>
+      <%= react_component("Products", {
+        products: FarmersProduct.get_products_farmer_offers(current_farmer.id),
+        id: current_farmer.id
+        })%>
+    </div>
+
+<% else %>
+<div class="like-page">
+  Please sign up to start your favorites list!
+  <div class="dancing-carrot">
+    <img id="drag1" src="/images/moody-carrot.gif" draggable="true" ondragstart="drag(event)" width="336" height="336">
+  </div>
+</div>
+
+<% end %>

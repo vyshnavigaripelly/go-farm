@@ -1,0 +1,152 @@
+// Place all the styles related to the Markets controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.google_maps_container {
+  max-width: 800px;
+  margin: 0 auto;
+  @media (max-width: 600px) {
+    vertical-align: center;
+  }
+
+  .google_maps {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    float: right;
+  }
+}
+
+h3 {
+  padding-top: 20px;
+}
+
+.show-market-title {
+  a {
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
+    height: 150px;
+    width: 150px;
+    min-width: 150px;
+
+    @media (max-width:500px) {
+      width: 50px;
+      height: 50px;
+      min-width: 50px;
+    }
+  }
+
+  h3 {
+    padding-left: 30px;
+
+    @media (max-width:500px) {
+      padding-left: 10px;
+      font-size: 20px;
+    }
+  }
+
+  display: flex;
+  align-items: center;
+}
+
+.show-market-section {
+  padding: 20px;
+  border-bottom: 1px solid gray;
+  margin-bottom: 20px;
+
+  ul:not(.browser-default) li {
+    list-style-type: circle;
+    margin-left: 30px;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.show-market-two-columns-responsive {
+  display: flex;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+  .left-section {
+    width: 50%;
+    padding-right: 10px;
+    @media (max-width: 800px) {
+      width: 100%;
+    }
+  }
+  .right-section {
+    padding-top: 20px;
+    width: 50%;
+    @media (max-width: 800px) {
+      width: 100%;
+    }
+  }
+}
+
+.farm-list-items {
+  display: flex;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+  .left-section {
+    @media (max-width: 800px) {
+      width: 100%;
+    }
+  }
+  .right-section {
+    padding-left: 20px;
+    @media (max-width: 800px) {
+      width: 100%;
+    }
+  }
+}
+
+#map {
+  height: 300px;
+}
+
+.add-market {
+  width: 50%;
+  align: center;
+  margin: 50px auto 20px auto;
+}
+
+.action {
+  padding-top: 40px;
+}
+
+.search-function {
+  max-width: 1000px;
+  margin: 50px auto 20px auto;
+  overflow: hidden;
+  width: 40%;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 10px;
+  padding-bottom: 20px;
+  padding-top: 0;
+  display: flex;
+  align-items: center;
+  .field-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  .field {
+    margin: auto;
+  }
+  @media (max-width: 1000px) {
+    width: 90%;
+    padding-bottom: 0;
+  }
+}
+
+.search_bar {
+  font-size: 14px;
+  text-align: center;
+}

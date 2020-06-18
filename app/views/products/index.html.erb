@@ -1,0 +1,24 @@
+<h3><%= current_farmer.farm_name %> Products</h3>
+
+<section class="">
+
+  <div class="">
+    <table class="centered">
+      <thead>
+        <tr>
+          <th>Products</th>
+          <th>Type</th>
+          <th>Organic</th>
+          <th>Non-GMO</th>
+          </thead>
+          <tbody>
+            <% @farmer_products.each do |farmer_product| %>
+            <%= render 'item', farmer_product: farmer_product %>
+            <% end %>
+          </tbody>
+        </tr>
+
+    </table>
+  </div>
+
+</section>

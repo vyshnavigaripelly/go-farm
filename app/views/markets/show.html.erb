@@ -1,0 +1,93 @@
+<!-- individual markets -->
+
+<!DOCTYPE HTML>
+<section class="show-market-layout">
+  <div class="show-market-title show-market-section">
+      <%= link_to @market.website_link do %>
+          <%= image_tag @market.image.thumb, alt: @market.name %>
+      <% end %>
+    <h3><%=@market.name %></h3>
+  </div>
+
+  <div class="show-market-section show-market-two-columns-responsive">
+    <div class="left-section">
+      <button class="btn waves-effect waves-light grey lighten-2" type="submit" name="action"><%= link_to 'Like', '/dashboard' %></button>
+      <p><b>Address:</b> <%= @market.address %></p>
+      <p><b>Days Open:</b> <%= @market.days_open %></p>
+      <p><b>Time Open:</b> <%= @market.time_open %></p>
+      <p><b>Description:</b> <%= @market.description %></p>
+      <p><b>Market Website:</b> <%= link_to @market.name, @market.website_link %></p>
+    </div>
+    <div class="right-section">
+      <div id="map"></div>
+    </div>
+  </div>
+
+  <div class="show-market-section">
+    <h5>All products at <%=@market.name%>: </h5>
+    <ul>
+      <% @products_sold_here.each do |product| %>
+        <li><%= product.product_name %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <% if current_farmer %>
+    <div class="show-market-section">
+      <h5> <%=@market.name%>: </h5>
+        <hr>
+          <div class="farm-list-items">
+            <div class="left-section">
+            </div>
+            <div class="right-section">
+              <p><b>Farm details:</b> <%= current_farmer.farm_name %></p>
+              <li><%= link_to "Delete", "/markets/#{@market.id}", method: :delete, data: { confirm: "Are you sure you want to leave this market?" }%></li>
+            </div>
+          </div>
+          <hr>
+      </div>
+    </div>
+  <% else %>
+    <div class="show-market-section">
+      <h5>All Farmers at <%=@market.name%>: </h5>
+        <hr>
+        <% @market.farmers.each do |f| %>
+          <div class="farm-list-items">
+            <div class="left-section">
+              <%= image_tag f.image.thumb, alt: f.farm_name %>
+            </div>
+            <div class="right-section">
+              <%=link_to "/farmers/#{f.id}" do %>
+                <p><b>Farm details:</b> <%= f.farm_name %></p>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <script>
+      handler = Gmaps.build('Google');
+      handler.buildMap({
+        provider: {
+          disableDefaultUI: true,
+          // pass in other Google Maps API options here
+        },
+        internal: {
+          id: 'map'
+        }
+      },
+      function(){
+        // console.log("map running for farmer show")
+        markers = handler.addMarkers(<%=raw @hash.to_json %>);
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          handler.getMap().setZoom(16)
+      }
+      );
+    </script>
+
+</section>
